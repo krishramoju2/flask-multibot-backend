@@ -1,34 +1,123 @@
 {
   "cybersecurity": {
-    "keywords": ["ransomware", "lockbit", "phishing"],
+    "keywords": [
+      "ransomware", "lockbit", "phishing", "malware", "spyware", "ddos", "breach",
+      "firewall", "zero day", "cyber attack", "vpn", "social engineering", "2fa",
+      "cyber threat", "antivirus", "cybersecurity", "cybercrime", "data leak",
+      "cyber war", "threat actor", "cyber hygiene", "patch management"
+    ],
     "responses": [
-      "Zero-trust is now standard practice.",
-      "AI-enhanced SOCs reduce breach detection time.",
-      "Deepfake phishing is a major concern."
+      "Zero-trust architectures are now standard in enterprise security.",
+      "AI-enhanced SOCs reduce breach detection time by over 60%.",
+      "Deepfake phishing is becoming nearly indistinguishable from real calls.",
+      "Most breaches originate from poor user awareness, not infrastructure flaws.",
+      "Ransomware-as-a-service is booming on the dark web.",
+      "Multi-factor authentication is no longer optional — it's essential.",
+      "Data leaks often stem from misconfigured S3 buckets or public endpoints.",
+      "VPNs protect data in transit, but endpoint security is still critical.",
+      "Patch management gaps are the #1 exploit vector for zero-days.",
+      "Human error continues to outpace technical vulnerabilities.",
+      "Insider threats are increasingly hard to detect without behavior analytics.",
+      "Cyber war scenarios now include satellite jamming and AI-driven bots.",
+      "Modern firewalls use deep packet inspection with ML anomaly detection.",
+      "Threat actors now target CI/CD pipelines for software supply chain attacks.",
+      "Cybercrime syndicates operate globally with nation-state support.",
+      "AI-driven phishing generators make detection harder than ever.",
+      "Most organizations detect breaches only after 200+ days.",
+      "Social engineering simulations can reduce attack success rates by 80%.",
+      "Cloud misconfigurations have surpassed malware as the top threat.",
+      "Bug bounty programs help detect critical flaws before attackers do.",
+      "Secure coding is now a fundamental part of developer onboarding."
     ]
   },
   "space": {
-    "keywords": ["mars", "moon", "telescope"],
+    "keywords": [
+      "mars", "moon", "telescope", "nasa", "spacex", "satellite", "asteroid", "orbit",
+      "cosmos", "black hole", "lunar", "iss", "jwst", "galaxy", "rocket", "launch",
+      "radiation", "space junk", "gravity", "international space station"
+    ],
     "responses": [
-      "Artemis III preps for 2026 Moon landing.",
-      "JWST is sending deep field images of early galaxies.",
-      "ESA's ExoMars mission resumes under new leadership."
+      "JWST has discovered carbon-bearing molecules in distant galaxies.",
+      "NASA plans crewed Mars missions in the 2030s using Artemis tech.",
+      "SpaceX is testing Starship for long-haul missions to the Moon and Mars.",
+      "The ISS has now hosted astronauts from over 15 countries.",
+      "Gravitational wave astronomy is opening a new window into the universe.",
+      "Moon ice is now a key target for in-situ fuel generation.",
+      "Low Earth Orbit (LEO) is experiencing extreme satellite congestion.",
+      "ESA's ExoMars rover is back on track for its 2028 launch.",
+      "New asteroid deflection tests proved successful with kinetic impactors.",
+      "Black holes now emit detectable jets that help map galactic centers.",
+      "Private space companies are building reusable vehicles at scale.",
+      "Space debris poses a major threat to long-term orbital infrastructure.",
+      "Lunar gateways will enable permanent science labs on the Moon.",
+      "Rocket reusability has cut launch costs by over 70% since 2015.",
+      "China’s Tiangong space station is nearing full crewed rotation.",
+      "Space elevators are still theoretical — but prototypes exist.",
+      "NASA’s Artemis program is in Phase II testing lunar habitats.",
+      "Solar sails may power future interstellar probes like Breakthrough Starshot.",
+      "Microgravity research on ISS helps with drug formulation and disease modeling.",
+      "Dark energy studies are the next frontier in observational cosmology.",
+      "Global space law frameworks are still catching up with private activity."
     ]
   },
   "deepsea": {
-    "keywords": ["mariana", "thermal", "ocean"],
+    "keywords": [
+      "deep sea", "ocean", "mariana", "trench", "submarine", "hydrothermal", "pressure",
+      "sea floor", "sonar", "abyss", "exploration", "deep ocean", "submersible", "creatures",
+      "biodiversity", "pollution", "coral", "mining", "ecosystem", "bioluminescence", "oxygen"
+    ],
     "responses": [
-      "AI gliders explore thermal vents autonomously.",
-      "UN regulates mining below 6,000m.",
-      "Plastic pollution detected even at 10,000m."
+      "The Mariana Trench reaches depths over 11,000 meters — deeper than Everest is tall.",
+      "AI-driven submersibles are mapping unknown ecosystems in thermal vent zones.",
+      "Microplastics have been found inside amphipods at 10,000m depth.",
+      "Deep-sea mining could disrupt fragile ecosystems that evolved over millions of years.",
+      "Bioluminescence is common among deep-sea species to communicate and attract prey.",
+      "UN discussions are underway on regulating mineral extraction from the sea floor.",
+      "Autonomous underwater vehicles now track migratory patterns using acoustic telemetry.",
+      "Oxygen minimum zones are expanding due to ocean warming and acidification.",
+      "Gigantic sea creatures like the colossal squid remain largely unstudied.",
+      "New trench bacteria strains may hold antibiotic or industrial potential.",
+      "Hydrothermal vents support life forms with no sunlight — powered by chemosynthesis.",
+      "Sonar imaging is helping uncover undersea mountains and ancient riverbeds.",
+      "Deep reefs offer a ‘backup’ biodiversity bank as shallow corals bleach.",
+      "Plastic dumped decades ago is still intact in some trench environments.",
+      "Explorers recently found jellyfish capable of withstanding 16,000 psi.",
+      "The average temperature at hadal zones is just above freezing.",
+      "Submersibles now use fiber optic tethers for real-time feedback.",
+      "Japan’s Shinkai 6500 was one of the first research vessels to visit the trench floor.",
+      "The abyssal plain hosts more species than any other marine zone.",
+      "High-pressure adaptations include gel-like muscles and transparent bones.",
+      "Acoustic pollution from shipping disrupts deep-sea whale communication."
     ]
   },
   "stocks": {
-    "keywords": ["tesla", "market", "nifty"],
+    "keywords": [
+      "stock", "market", "nifty", "sensex", "nasdaq", "dow", "tesla", "inflation",
+      "fed", "interest rate", "etf", "mutual fund", "dividend", "portfolio",
+      "investment", "shares", "bull", "bear", "ipo", "trading", "forecast"
+    ],
     "responses": [
-      "Nifty50 hits record high after RBI policy changes.",
-      "AI-based ETFs outperform traditional funds.",
-      "2025 sees renewed interest in semiconductor stocks."
+      "The Fed's next decision is expected to influence tech-heavy indices.",
+      "Nifty50 continues to outperform as investors flock to India’s growth story.",
+      "Semiconductor demand surges as AI chips dominate 2025 earnings.",
+      "Tesla stock sees volatility amid EV subsidy shifts and AI pivot.",
+      "Investors eye green energy ETFs following new climate bills.",
+      "Inflation hedging strategies include commodities and real estate.",
+      "Retail trading has grown over 300% post-zero-commission policies.",
+      "Quant strategies now include NLP-based sentiment modeling.",
+      "Crypto integration into fintech platforms is increasing stock diversification.",
+      "IPO markets have cooled, but SPACs still remain an entry path.",
+      "High dividend yield funds offer protection during market drawdowns.",
+      "Portfolio rebalancing is advised quarterly for risk-adjusted growth.",
+      "Global macro events drive sectoral rotations in emerging markets.",
+      "Interest rate hikes often hit growth stocks harder than value ones.",
+      "The Nasdaq is now dominated by the 'Magnificent Seven' AI stocks.",
+      "Investors are increasingly ESG-conscious, affecting company valuations.",
+      "High-frequency trading now accounts for over 70% of US volume.",
+      "Machine learning models are being used for anomaly detection in fraud.",
+      "Post-pandemic, supply chain stocks are seeing strong recoveries.",
+      "India’s stock market is one of the fastest-growing globally.",
+      "REITs are gaining popularity as an inflation-safe real estate option."
     ]
   }
 }
