@@ -9,6 +9,8 @@ from utils import translate_input, translate_output, log_event
 import datetime
 from pydantic import BaseModel, constr
 import re
+from collections import Counter
+import os
 
 app = FastAPI()
 
@@ -32,6 +34,7 @@ class ChatRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
 
 @app.post("/chat")
 async def chat(data: ChatRequest):
@@ -60,7 +63,40 @@ async def chat(data: ChatRequest):
         "history": session_memory[session_id],
     }
 
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_dashboard(request: Request):
+    log_file = "logs/backend.log"
+    if not os.path.exists(log_file):
+        return HTMLResponse("<h2>No logs found yet.</h2>")
+
+    bot_usage = []
+    queries = []
+    translation_errors = []
+
+    with open(log_file, "r") as f:
+        for line in f:
+            if "BOT_USAGE" in line:
+                bot = line.strip().split(":")[-1].strip()
+                bot_usage.append(bot)
+            elif "QUERY" in line:
+                msg = line.strip().split("to")[-1].strip()
+                queries.append(msg)
+            elif "TRANSLATION_ERROR" in line:
+                lang_msg = line.strip().split(":")[-1].strip()
+                translation_errors.append(lang_msg)
+
+    usage_stats = Counter(bot_usage).most_common()
+    query_stats = Counter(queries).most_common(5)
+    failed_translations = Counter(translation_errors).most_common(5)
+
+    return templates.TemplateResponse("admin.html", {
+        "request": request,
+        "usage_stats": usage_stats,
+        "query_stats": query_stats,
+        "translation_errors": failed_translations
+    })
+
 def sanitize(text):
     text = text.strip()
-    text = re.sub(r"[<>]", "", text)  # HTML injection guard
+    text = re.sub(r"[<>]", "", text)  # Prevent HTML injection
     return text
