@@ -40,16 +40,23 @@ async def chat(data: dict):
     if session_id not in session_memory:
         session_memory[session_id] = []
 
-    translated_input = translate_input(user_input, language)
+    if language != "en":
+        translated_input = translate_input(user_input, language)
+    else:
+        translated_input = user_input
+
     session_memory[session_id].append(("user", translated_input))
 
+    # PRELOADED bot responses
     bot_reply = get_bot_response(bot_name, translated_input)
     session_memory[session_id].append((bot_name, bot_reply))
 
-    translated_reply = translate_output(bot_reply, language)
+    translated_reply = (
+        translate_output(bot_reply, language) if language != "en" else bot_reply
+    )
 
     return {
         "reply": translated_reply,
         "timestamp": datetime.datetime.utcnow().isoformat(),
-        "history": session_memory[session_id]
+        "history": session_memory[session_id],
     }
