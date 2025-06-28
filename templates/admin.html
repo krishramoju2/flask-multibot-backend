@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; background: #f4f4f4; }
+    h1 { color: #333; }
+    table { border-collapse: collapse; width: 60%; margin-bottom: 30px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>📊 Bot Usage Dashboard</h1>
+
+  <h2>Most Used Bots</h2>
+  <table>
+    <tr><th>Bot Name</th><th>Count</th></tr>
+    {% for bot, count in usage_stats %}
+      <tr><td>{{ bot }}</td><td>{{ count }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>Frequent Queries</h2>
+  <table>
+    <tr><th>Query</th><th>Count</th></tr>
+    {% for query, count in query_stats %}
+      <tr><td>{{ query }}</td><td>{{ count }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>Translation Failures</h2>
+  <table>
+    <tr><th>Language Input</th><th>Failures</th></tr>
+    {% for fail, count in translation_errors %}
+      <tr><td>{{ fail }}</td><td>{{ count }}</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
