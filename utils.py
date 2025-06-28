@@ -1,7 +1,17 @@
-# Placeholder for language translation
+from deep_translator import GoogleTranslator
+
 def translate_input(message, lang):
-    # Simulate translation (plug into Google Translate API or DeepL later)
-    return message
+    if lang == "en":
+        return message
+    try:
+        return GoogleTranslator(source=lang, target='en').translate(message)
+    except Exception:
+        return message
 
 def translate_output(message, lang):
-    return message
+    if lang == "en":
+        return message
+    try:
+        return GoogleTranslator(source='en', target=lang).translate(message)
+    except Exception:
+        return message
