@@ -5,28 +5,66 @@
   <title>AI MultiBot Chat</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body>
+<body class="dark">
   <h1>🌍 AI MultiBot Marketplace</h1>
-  <label>Choose Bot:</label>
-  <select id="bot-select">
-    <option value="cybersecurity">Cybersecurity</option>
-    <option value="space">Space</option>
-    <option value="deepsea">Deep Sea</option>
-    <option value="stocks">Stocks</option>
-  </select><br>
+
+  <div class="settings">
+    <label>Choose Bot:</label>
+    <select id="bot-select">
+      <option value="cybersecurity">Cybersecurity</option>
+      <option value="space">Space</option>
+      <option value="deepsea">Deep Sea</option>
+      <option value="stocks">Stocks</option>
+    </select>
+
+    <label>Font:</label>
+    <select id="font-select" onchange="updateFont()">
+      <option value="monospace">Monospace</option>
+      <option value="serif">Serif</option>
+      <option value="sans-serif">Sans Serif</option>
+      <option value="cursive">Cursive</option>
+    </select>
+
+    <label>Theme:</label>
+    <select id="theme-select" onchange="switchTheme()">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+
+    <label>Language:</label>
+    <select id="lang-select">
+      <option value="en">English</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="hi">Hindi</option>
+    </select>
+  </div>
+
   <input id="prompt" type="text" placeholder="Enter your message..." size="50"/>
   <button onclick="sendMessage()">Send</button>
   <div id="chat-box"></div>
 
   <script>
     const sessionId = Math.random().toString(36).substring(7);
+
+    function switchTheme() {
+      const theme = document.getElementById('theme-select').value;
+      document.body.className = theme;
+    }
+
+    function updateFont() {
+      const font = document.getElementById('font-select').value;
+      document.body.style.fontFamily = font;
+    }
+
     async function sendMessage() {
       const msg = document.getElementById("prompt").value;
       const bot = document.getElementById("bot-select").value;
+      const lang = document.getElementById("lang-select").value;
       const res = await fetch("/chat", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({session_id: sessionId, message: msg, language: "en", bot_name: bot})
+        body: JSON.stringify({session_id: sessionId, message: msg, language: lang, bot_name: bot})
       });
       const data = await res.json();
       const chatBox = document.getElementById("chat-box");
