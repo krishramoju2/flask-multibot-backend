@@ -22,25 +22,21 @@ def chat():
     if not all([session_id, user_input, bot_name]):
         return jsonify({"error": "Missing required fields."}), 400
 
-    # Initialize session
     if session_id not in session_memory:
         session_memory[session_id] = []
 
-    # Translate input
     translated_input = translate_input(user_input, language)
     session_memory[session_id].append(("user", translated_input))
 
-    # Generate bot response (but DO NOT return it)
     bot_reply = get_bot_response(bot_name, translated_input)
     session_memory[session_id].append((bot_name, bot_reply))
 
-    # Translate for storage (not shown to client)
     translated_reply = translate_output(bot_reply, language)
 
     return jsonify({
-        "status": "success",
-        "timestamp": datetime.datetime.utcnow().isoformat()
-        # response is hidden intentionally
+        "reply": translated_reply,
+        "timestamp": datetime.datetime.utcnow().isoformat(),
+        "history": session_memory[session_id]
     })
 
 if __name__ == "__main__":
