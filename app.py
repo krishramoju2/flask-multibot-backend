@@ -1,26 +1,41 @@
-from flask import Flask, request, jsonify, render_template
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from bots import get_bot_response
 from memory import session_memory
 from utils import translate_input, translate_output
 import datetime
-import os
 
-app = Flask(__name__, static_folder="static", template_folder="templates")
+app = FastAPI()
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    data = request.get_json()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
+
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.post("/chat")
+async def chat(data: dict):
     session_id = data.get("session_id")
     user_input = data.get("message")
     language = data.get("language", "en")
     bot_name = data.get("bot_name")
 
     if not all([session_id, user_input, bot_name]):
-        return jsonify({"error": "Missing required fields."}), 400
+        return JSONResponse(status_code=400, content={"error": "Missing fields"})
 
     if session_id not in session_memory:
         session_memory[session_id] = []
@@ -33,12 +48,8 @@ def chat():
 
     translated_reply = translate_output(bot_reply, language)
 
-    return jsonify({
+    return {
         "reply": translated_reply,
         "timestamp": datetime.datetime.utcnow().isoformat(),
         "history": session_memory[session_id]
-    })
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    }
