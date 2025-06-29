@@ -2,24 +2,24 @@ from flask import Flask, request, jsonify, render_template
 import json
 import os
 from datetime import datetime
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+# Load .env for API key
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
 BOT_MEMORY_FILE = "bot_memory.json"
 SESSION_LOG_DIR = "session_logs"
-
-# Ensure session log directory exists
 os.makedirs(SESSION_LOG_DIR, exist_ok=True)
 
-# Global bot status tracking dictionary
 bot_status = {}
 
-# Load bot memory from JSON
 def load_bot_memory():
     with open(BOT_MEMORY_FILE, "r") as f:
         return json.load(f)
 
-# Initialize all bots as healthy and available
 def init_bot_status():
     memory = load_bot_memory()
     for bot in memory:
@@ -29,16 +29,13 @@ def init_bot_status():
             "last_used": "Never"
         }
 
-# Log when a bot is used
 def update_bot_last_used(bot_name):
     if bot_name in bot_status:
         bot_status[bot_name]["last_used"] = datetime.now().isoformat()
 
-# Save chat history for a session
 def save_session(session_id, bot_name, user_input, bot_response, language):
     path = os.path.join(SESSION_LOG_DIR, f"{session_id}.json")
     session = []
-
     if os.path.exists(path):
         with open(path, "r") as f:
             session = json.load(f)
@@ -54,20 +51,35 @@ def save_session(session_id, bot_name, user_input, bot_response, language):
     with open(path, "w") as f:
         json.dump(session, f, indent=2)
 
+def sanitize_input(text):
+    blacklist = ["__import__", "eval", "exec", "open(", "os.", "subprocess", "socket", "system(", "sh"]
+    for word in blacklist:
+        if word.lower() in text.lower():
+            return False
+    return True
+
+def validate_api_key(headers):
+    return headers.get("X-API-Key") == API_KEY
+
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
 
 @app.route("/chat", methods=["POST"])
 def chat():
+    if not validate_api_key(request.headers):
+        return jsonify({"error": "Unauthorized"}), 403
+
     data = request.get_json()
     session_id = data.get("session_id")
     user_input = data.get("message")
     language = data.get("language", "en")
     bot_name = data.get("bot_name")
 
-    bot_memory = load_bot_memory()
+    if not sanitize_input(user_input):
+        return jsonify({"error": "Disallowed prompt"}), 400
 
+    bot_memory = load_bot_memory()
     if bot_name not in bot_memory:
         return jsonify({"error": "Bot not found"}), 404
 
@@ -80,7 +92,6 @@ def chat():
     if not response:
         response = f"[{bot_name}] I couldn't find an answer to your query."
 
-    # Update bot status & session memory
     update_bot_last_used(bot_name)
     save_session(session_id, bot_name, user_input, response, language)
 
@@ -88,6 +99,9 @@ def chat():
 
 @app.route("/status", methods=["GET"])
 def get_status():
+    if not validate_api_key(request.headers):
+        return jsonify({"error": "Unauthorized"}), 403
+
     return jsonify(bot_status)
 
 if __name__ == "__main__":
