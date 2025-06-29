@@ -12,9 +12,11 @@ API_KEY = os.getenv("API_KEY")
 BOT_MEMORY_FILE = "bot_memory.json"
 SESSION_LOG_DIR = "session_logs"
 DRIFT_LOG_DIR = "monthly_drift_logs"
+DEBUG_LOG_DIR = "debug_logs"
 
 os.makedirs(SESSION_LOG_DIR, exist_ok=True)
 os.makedirs(DRIFT_LOG_DIR, exist_ok=True)
+os.makedirs(DEBUG_LOG_DIR, exist_ok=True)
 
 bot_status = {}
 
@@ -64,20 +66,32 @@ def save_session(session_id, bot_name, user_input, bot_response, language):
 def track_drift(bot_name, user_input, bot_response):
     month_key = datetime.now().strftime("%Y-%m")
     drift_file = os.path.join(DRIFT_LOG_DIR, f"{bot_name}_{month_key}.json")
-    
     drift_log = []
     if os.path.exists(drift_file):
         with open(drift_file, "r") as f:
             drift_log = json.load(f)
-
     drift_log.append({
         "timestamp": datetime.now().isoformat(),
         "prompt": user_input,
         "response": bot_response
     })
-
     with open(drift_file, "w") as f:
         json.dump(drift_log, f, indent=2)
+
+def log_debug(bot_name, user_input, bot_response, language):
+    debug_file = os.path.join(DEBUG_LOG_DIR, f"{bot_name}_debug.json")
+    debug_log = []
+    if os.path.exists(debug_file):
+        with open(debug_file, "r") as f:
+            debug_log = json.load(f)
+    debug_log.append({
+        "timestamp": datetime.now().isoformat(),
+        "prompt": user_input,
+        "response": bot_response,
+        "lang": language
+    })
+    with open(debug_file, "w") as f:
+        json.dump(debug_log, f, indent=2)
 
 @app.route("/", methods=["GET"])
 def home():
@@ -107,13 +121,16 @@ def chat():
             response = resp
             break
 
+    fallback = False
     if not response:
         response = f"[{bot_name}] I couldn't find an answer to your query."
+        fallback = True
 
-    # Save logs and update health
     update_bot_last_used(bot_name)
     save_session(session_id, bot_name, user_input, response, language)
     track_drift(bot_name, user_input, response)
+    if fallback:
+        log_debug(bot_name, user_input, response, language)
 
     return jsonify({"response": response})
 
