@@ -2,4 +2,5 @@ flask
 fastapi
 uvicorn
 jinja2
-python-multipart
+python-multipar
+python-dotenv
