@@ -8,6 +8,12 @@
       "Deepfake phishing is a major concern.",
       "Zero Trust Architecture protects corporate resources.",
       "Malware strains now use polymorphic code."
+    ],
+    "examples": [
+      "How does phishing work?",
+      "Explain ransomware attacks.",
+      "Are firewalls enough?",
+      "What's a zero-trust policy?"
     ]
   },
   "space": {
@@ -19,6 +25,12 @@
       "ESA's ExoMars mission resumes under new leadership.",
       "SpaceX is planning another Starship launch.",
       "ISS operations extended until 2030."
+    ],
+    "examples": [
+      "Tell me about the James Webb Telescope.",
+      "What’s happening with Artemis?",
+      "What is the latest Mars mission?",
+      "Who controls the ISS?"
     ]
   },
   "deepsea": {
@@ -30,6 +42,12 @@
       "Plastic pollution detected even at 10,000m.",
       "Manned submersibles now reach 11,000m.",
       "Bioluminescent plankton density is increasing."
+    ],
+    "examples": [
+      "What's the depth of the Mariana Trench?",
+      "Are there any new oceanic discoveries?",
+      "Can we mine deep-sea minerals?",
+      "How polluted are our oceans?"
     ]
   },
   "stocks": {
@@ -41,6 +59,12 @@
       "2025 sees renewed interest in semiconductor stocks.",
       "Tesla's quarterly earnings exceed expectations.",
       "Bond yields influence tech stock movement."
+    ],
+    "examples": [
+      "What’s going on with Tesla stock?",
+      "Best performing ETFs?",
+      "How is the stock market doing today?",
+      "Nifty index outlook?"
     ]
   }
 }
