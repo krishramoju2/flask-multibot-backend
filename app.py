@@ -10,6 +10,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 BOT_MEMORY_FILE = "bot_memory.json"
+BOT_VERSION_LOG = "bot_versions.json"
 SESSION_LOG_DIR = "session_logs"
 DRIFT_LOG_DIR = "monthly_drift_logs"
 DEBUG_LOG_DIR = "debug_logs"
@@ -19,10 +20,30 @@ os.makedirs(DRIFT_LOG_DIR, exist_ok=True)
 os.makedirs(DEBUG_LOG_DIR, exist_ok=True)
 
 bot_status = {}
+bot_versions = {}
 
 def load_bot_memory():
     with open(BOT_MEMORY_FILE, "r") as f:
         return json.load(f)
+
+def load_bot_versions():
+    if os.path.exists(BOT_VERSION_LOG):
+        with open(BOT_VERSION_LOG, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_bot_versions():
+    with open(BOT_VERSION_LOG, "w") as f:
+        json.dump(bot_versions, f, indent=2)
+
+def track_version(bot_name, version):
+    now = datetime.now().isoformat()
+    if bot_name not in bot_versions:
+        bot_versions[bot_name] = []
+    latest = bot_versions[bot_name][-1]["version"] if bot_versions[bot_name] else None
+    if version != latest:
+        bot_versions[bot_name].append({"version": version, "timestamp": now})
+        save_bot_versions()
 
 def init_bot_status():
     memory = load_bot_memory()
@@ -115,6 +136,9 @@ def chat():
     if bot_name not in bot_memory:
         return jsonify({"error": "Bot not found"}), 404
 
+    version = bot_memory[bot_name].get("version", "0.0.0")
+    track_version(bot_name, version)
+
     response = None
     for kw, resp in zip(bot_memory[bot_name]["keywords"], bot_memory[bot_name]["responses"]):
         if kw.lower() in user_input.lower():
@@ -142,5 +166,6 @@ def get_status():
     return jsonify(bot_status)
 
 if __name__ == "__main__":
+    bot_versions = load_bot_versions()
     init_bot_status()
     app.run(debug=True, host="0.0.0.0", port=8000)
