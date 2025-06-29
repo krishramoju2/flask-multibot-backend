@@ -66,5 +66,124 @@
       "How is the stock market doing today?",
       "Nifty index outlook?"
     ]
+  },
+  "climate": {
+    "version": "2.0.1",
+    "keywords": ["global warming", "carbon", "sea level", "emissions", "renewable"],
+    "responses": [
+      "Sea levels are projected to rise 1m by 2100.",
+      "Global carbon emissions hit new record in 2024.",
+      "Wind and solar now exceed coal in many countries.",
+      "Carbon capture technologies gain government funding.",
+      "Heatwaves in 2025 break previous temperature records."
+    ],
+    "examples": [
+      "How serious is global warming?",
+      "Are renewables replacing fossil fuels?",
+      "What causes sea level rise?",
+      "How can we reduce emissions?"
+    ]
+  },
+  "ai": {
+    "version": "3.1.0",
+    "keywords": ["gpt", "nlp", "machine learning", "openai", "deep learning"],
+    "responses": [
+      "GPT-5 is expected to launch later this year.",
+      "AI models now handle multimodal inputs with ease.",
+      "Transformer architecture remains dominant in NLP.",
+      "AI is transforming drug discovery and education.",
+      "Regulatory discussions around AGI are increasing."
+    ],
+    "examples": [
+      "How does ChatGPT work?",
+      "What is machine learning?",
+      "Why are transformers important?",
+      "What's new in deep learning?"
+    ]
+  },
+  "health": {
+    "version": "1.4.3",
+    "keywords": ["vaccine", "covid", "diabetes", "mental health", "fitness"],
+    "responses": [
+      "AI helps detect diabetic retinopathy early.",
+      "mRNA vaccines are being adapted for other diseases.",
+      "Mental health concerns rise among teens.",
+      "Wearables improve real-time fitness monitoring.",
+      "COVID variants still under close surveillance."
+    ],
+    "examples": [
+      "How does a vaccine work?",
+      "What’s the status of COVID now?",
+      "How to manage diabetes?",
+      "Why is mental health important?"
+    ]
+  },
+  "sports": {
+    "version": "2.2.0",
+    "keywords": ["olympics", "football", "cricket", "f1", "nba"],
+    "responses": [
+      "Paris Olympics 2024 includes breaking and surfing.",
+      "India secures historic win in T20 World Cup 2025.",
+      "F1 introduces new hybrid regulations.",
+      "NBA finals set for intense 7-game series.",
+      "VAR remains controversial in football decisions."
+    ],
+    "examples": [
+      "Who won the T20 World Cup?",
+      "When are the Olympics?",
+      "Latest F1 race results?",
+      "How does VAR work?"
+    ]
+  },
+  "tech": {
+    "version": "1.9.0",
+    "keywords": ["apple", "quantum", "semiconductor", "cloud", "vr"],
+    "responses": [
+      "Apple Vision Pro 2 rumored for 2026.",
+      "Quantum computing startups gain momentum.",
+      "Chip shortage eases by mid-2025.",
+      "Cloud-native apps dominate enterprise architecture.",
+      "VR adoption grows in education and training."
+    ],
+    "examples": [
+      "What’s the latest Apple product?",
+      "How does quantum computing work?",
+      "Are chips still in short supply?",
+      "What's cloud-native architecture?"
+    ]
+  },
+  "politics": {
+    "version": "1.5.7",
+    "keywords": ["election", "un", "geopolitics", "sanctions", "policy"],
+    "responses": [
+      "UN debates new AI regulation framework.",
+      "US presidential elections see record turnout.",
+      "Tensions rise in the South China Sea.",
+      "EU imposes sanctions over data privacy concerns.",
+      "New trade agreements shift global alliances."
+    ],
+    "examples": [
+      "What happened in the last election?",
+      "What are current geopolitical hotspots?",
+      "Why is the UN discussing AI?",
+      "What are the latest sanctions?"
+    ]
+  },
+  "education": {
+    "version": "1.0.4",
+    "keywords": ["online learning", "edtech", "ai tutor", "curriculum", "student"],
+    "responses": [
+      "AI tutors improve personalized education.",
+      "Hybrid classrooms are now standard in many schools.",
+      "Online platforms expand to underserved regions.",
+      "Gamification increases student engagement.",
+      "New curriculums emphasize soft skills and coding."
+    ],
+    "examples": [
+      "Is online learning effective?",
+      "What’s new in education?",
+      "Are AI tutors reliable?",
+      "How are schools adapting to tech?"
+    ]
   }
 }
