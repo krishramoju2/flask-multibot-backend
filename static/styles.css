@@ -1,24 +1,33 @@
-body.dark {
-  background: #111;
-  color: #eee;
-}
-body.light {
-  background: #f9f9f9;
-  color: #111;
-}
+/* === Base Styles === */
 body {
-  font-family: monospace;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   text-align: center;
-  margin: 40px auto;
   transition: all 0.3s ease;
 }
+
 input, select, button {
   padding: 10px;
   margin-top: 10px;
 }
+
+/* === Theme Classes for Body === */
+body.dark {
+  background: #111;
+  color: #eee;
+}
+
+body.light {
+  background: #f9f9f9;
+  color: #111;
+}
+
+/* === Typed Chatbot === */
 .settings {
   margin-bottom: 20px;
 }
+
 #chat-box {
   margin-top: 20px;
   text-align: left;
@@ -29,16 +38,12 @@ input, select, button {
   margin-right: auto;
   border-radius: 10px;
 }
+
 body.light #chat-box {
   background: #ddd;
 }
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  transition: all 0.3s ease;
-}
 
+/* === Voice Assistant Section === */
 .container {
   max-width: 800px;
   margin: auto;
@@ -66,12 +71,16 @@ body {
   font-style: italic;
 }
 
-.controls select, .filters select, .filters input {
+/* === Controls and Filters === */
+.controls select,
+.filters select,
+.filters input {
   margin: 8px;
   padding: 8px;
   border-radius: 6px;
 }
 
+/* === Timeline Entries === */
 .timeline-entry {
   background: #f3f3f3;
   border-radius: 8px;
@@ -95,8 +104,23 @@ body {
   font-size: 18px;
 }
 
-/* Themes */
-.theme-light { background: #ffffff; color: #000; }
-.theme-dark { background: #121212; color: #eee; }
-.theme-blue { background: #e0f7fa; color: #004d40; }
-.theme-pink { background: #ffe4e1; color: #880e4f; }
+/* === Theme Options for Voice Assistant === */
+.theme-light {
+  background: #ffffff;
+  color: #000;
+}
+
+.theme-dark {
+  background: #121212;
+  color: #eee;
+}
+
+.theme-blue {
+  background: #e0f7fa;
+  color: #004d40;
+}
+
+.theme-pink {
+  background: #ffe4e1;
+  color: #880e4f;
+}
